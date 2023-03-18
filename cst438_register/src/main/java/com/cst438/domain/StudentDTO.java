@@ -1,7 +1,5 @@
 package com.cst438.domain;
 
-//import java.util.List;
-
 public class StudentDTO {
 
 		public int id;
@@ -10,7 +8,8 @@ public class StudentDTO {
 		public String status;
 		public int statusId;
 	
-	// /*
+
+	// Default constructor
 	public StudentDTO(){
 		this.id = 0;
 		this.student_email=null;
@@ -19,6 +18,7 @@ public class StudentDTO {
 		this.statusId=0;
 	}
 	
+	// Name and email only constructor
 	public StudentDTO(String name, String email){
 		this.id = 0;
 		this.student_email=email;
@@ -26,7 +26,7 @@ public class StudentDTO {
 		this.status=null;
 		this.statusId=0;
 	}
-	///// */
+
 	
 	@Override
 	public String toString() {
@@ -34,17 +34,7 @@ public class StudentDTO {
 				", status=" + status + ", statusId=" + statusId + "]";
 	}
 		
-//	}
-
-//	public int course_id;
-//	public List<GradeDTO> grades;
-	
-//	@Override
-//	public String toString() {
-//		return "StudentDTOG [course_id=" + course_id + ", grades=[" + grades + "] ]";
-//	}
-
-	
+	// Overrides and returning false tree
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,8 +44,6 @@ public class StudentDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		StudentDTO other = (StudentDTO) obj;
-//		if (course_id != other.course_id)
-//			return false;
 		if (id != other.id)
 			return false;
 		if (student_email == null) {
