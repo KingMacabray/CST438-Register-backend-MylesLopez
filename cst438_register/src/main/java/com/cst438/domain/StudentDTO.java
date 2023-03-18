@@ -10,23 +10,23 @@ public class StudentDTO {
 		public String status;
 		public int statusId;
 	
-	/*
+	// /*
 	public StudentDTO(){
-		this.id = id;
-		this.student_email=student_email;
-		this.student_name=student_name;
-		this.status_name=status_name;
-		this.statusId=statusId;
+		this.id = 0;
+		this.student_email=null;
+		this.student_name=null;
+		this.status=null;
+		this.statusId=0;
 	}
-	/*
-	public StudentDTO(int studentId, int status_ID){
-		this.id = studentId;
-		//this.student_email=student_email;
-		//this.student_name=student_name;
-		//this.status_name=status_name;
-		this.statusId=status_ID;
+	
+	public StudentDTO(String name, String email){
+		this.id = 0;
+		this.student_email=email;
+		this.student_name=name;
+		this.status=null;
+		this.statusId=0;
 	}
-	*/
+	///// */
 	
 	@Override
 	public String toString() {
