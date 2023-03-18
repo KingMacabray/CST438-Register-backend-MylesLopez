@@ -7,7 +7,7 @@ public class StudentDTO {
 		public int id;
 		public String student_email;
 		public String student_name;
-		public String status_name;
+		public String status;
 		public int statusId;
 	
 	/*
@@ -31,7 +31,7 @@ public class StudentDTO {
 	@Override
 	public String toString() {
 		return "Student DTO [id=" + id + ", student_name=" + student_name + ", student_email=" + student_email + 
-				", status_name=" + status_name + ", statusId=" + statusId + "]";
+				", status=" + status + ", statusId=" + statusId + "]";
 	}
 		
 //	}

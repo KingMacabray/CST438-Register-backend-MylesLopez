@@ -42,14 +42,17 @@ public class StudentController {
 		if (stud == null) {
 			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid student primary key. "+ studentId);
 		}
-		if (student.statusId > 2) {
-			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid status code.");
+		if (student.statusId == 0) {
+			//throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid status code.");
+			stud.setStatus(null);
+			
 		}
-		System.out.printf("%s\n", stud.toString());
+		else { stud.setStatus(student.status);}
+		//System.out.printf("%s\n", stud.toString());
 		stud.setStatusCode(student.statusId);
 		studentRepository.save(stud);
-		System.out.print(student.statusId);
-		stud.toString();
+		//System.out.print(student.statusId);
+		//stud.toString();
 		//studentRepository.save(stud);
 	}
 	
