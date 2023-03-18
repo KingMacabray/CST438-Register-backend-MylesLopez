@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-//import com.cst438.domain.AssignmentGradeRepository;
 import com.cst438.domain.Student;
-//import com.cst438.domain.GradebookDTO;
 import com.cst438.domain.StudentDTO;
 import com.cst438.domain.StudentRepository;
 
@@ -35,25 +33,22 @@ public class StudentController {
 	@PutMapping("/student/{studId}") 
 	@Transactional
 	public void updateHold (@PathVariable("studId") Integer studentId, @RequestBody StudentDTO student) {
-		//return "";
 		Student stud = studentRepository.findById(studentId).orElse(null);
-		//StudentDTO tempstud = new StudentDTO(student.id, student.statusId);
-		//student.getStatusId;
+
+		// Check if there exists a student to change Hold
 		if (stud == null) {
 			throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid student primary key. "+ studentId);
 		}
+		
+		//Eliminate Hold status if Hold Id is released
 		if (student.statusId == 0) {
-			//throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "Invalid status code.");
-			stud.setStatus(null);
-			
+			stud.setStatus(null);			
 		}
+		
+		//Alter Hold status and Hold id for student
 		else { stud.setStatus(student.status);}
-		//System.out.printf("%s\n", stud.toString());
 		stud.setStatusCode(student.statusId);
 		studentRepository.save(stud);
-		//System.out.print(student.statusId);
-		//stud.toString();
-		//studentRepository.save(stud);
 	}
 	
 }
