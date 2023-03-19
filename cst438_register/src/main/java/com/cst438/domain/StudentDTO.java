@@ -56,6 +56,10 @@ public class StudentDTO {
 				return false;
 		} else if (!student_name.equals(other.student_name))
 			return false;
+		if (status != null)
+			return false;
+		if (statusId != other.statusId)
+			return false;
 		return true;
 		
 	}

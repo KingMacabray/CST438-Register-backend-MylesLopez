@@ -5,7 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,16 +21,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
+//import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.cst438.controller.ScheduleController;
+
 import com.cst438.controller.StudentController;
+/*
+import com.cst438.controller.ScheduleController;
 import com.cst438.domain.Course;
 import com.cst438.domain.CourseRepository;
 import com.cst438.domain.Enrollment;
 import com.cst438.domain.EnrollmentRepository;
 import com.cst438.domain.ScheduleDTO;
+*/
 import com.cst438.domain.StudentDTO;
 import com.cst438.domain.Student;
 import com.cst438.domain.StudentRepository;
@@ -39,7 +42,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.test.context.ContextConfiguration;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 
 @ContextConfiguration(classes = { StudentController.class })
 @AutoConfigureMockMvc(addFilters = false)
@@ -73,23 +76,23 @@ public class JunitTestStudent {
 		
 		MockHttpServletResponse response;
 		
+		
+		//Adding student and putting in information
 		Student addedStudent = new Student();
-		
-		
-		
-		
+
 		addedStudent.setEmail(TEST_STUDENT_EMAIL);
 		addedStudent.setName(TEST_STUDENT_NAME);
 		addedStudent.setStatusCode(TEST_STATUS_CODE);
 		addedStudent.setStatus(TEST_STATUS);
 		addedStudent.setStudent_id(TEST_STUDENT_ID);
 		
-		//*
+		//*  List here is probably not needed but have in case
 		List<Student> students = new java.util.ArrayList<>();
 		students.add(addedStudent);
 		//// */
 		
 		
+		//Setting up for testing
 		given(studentRepository.findById(TEST_STUDENT_ID)).willReturn(Optional.of(addedStudent));
         given(studentRepository.findByEmail(TEST_STUDENT_EMAIL)).willReturn(addedStudent);
         given(studentRepository.save(any(Student.class))).willReturn(addedStudent);
@@ -98,6 +101,7 @@ public class JunitTestStudent {
         studentDTO.id = TEST_STUDENT_ID;
         studentDTO.statusId = TEST_STUDENT_ID;
         
+        // Running through Mock building
         response = mvc.perform(
                 MockMvcRequestBuilders
                   .post("/student")
@@ -111,8 +115,8 @@ public class JunitTestStudent {
 		assertEquals(200, response.getStatus());
 		
 		// verify that returned data has non zero primary key
-		//StudentDTO result = fromJsonString(response.getContentAsString(), StudentDTO.class);
-		//assertNotEquals( 0  , result.id);
+		StudentDTO result = fromJsonString(response.getContentAsString(), StudentDTO.class);
+		assertNotEquals( 0  , result.id);
 				
 		// verify that repository save method was called.
 		verify(studentRepository).save(any(Student.class));
@@ -121,6 +125,8 @@ public class JunitTestStudent {
 	
 	}
 	
+	
+	// Classes for use in testing
 	private static <T> T  fromJsonString(String str, Class<T> valueType ) {
 		try {
 			return new ObjectMapper().readValue(str, valueType);
