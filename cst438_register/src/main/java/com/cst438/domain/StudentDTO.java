@@ -2,16 +2,16 @@ package com.cst438.domain;
 
 public class StudentDTO {
 
-		public int id;
-		public String student_email;
-		public String student_name;
-		public String status;
-		public int statusId;
+	public int id;
+	public String student_email;
+	public String student_name;
+	public String status;
+	public int statusId;
 	
 
 	// Default constructor
 	public StudentDTO(){
-		this.id = 0;
+		this.id = 1;
 		this.student_email=null;
 		this.student_name=null;
 		this.status=null;
@@ -20,7 +20,7 @@ public class StudentDTO {
 	
 	// Name and email only constructor
 	public StudentDTO(String name, String email){
-		this.id = 0;
+		this.id = 1;
 		this.student_email=email;
 		this.student_name=name;
 		this.status=null;
@@ -30,7 +30,7 @@ public class StudentDTO {
 	
 	@Override
 	public String toString() {
-		return "Student DTO [id=" + id + ", student_name=" + student_name + ", student_email=" + student_email + 
+		return "Student DTO [id=" + id + ", student_email=" + student_email + ", student_name=" + student_name + 
 				", status=" + status + ", statusId=" + statusId + "]";
 	}
 		
