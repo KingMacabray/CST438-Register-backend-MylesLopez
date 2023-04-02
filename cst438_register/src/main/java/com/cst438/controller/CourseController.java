@@ -26,12 +26,12 @@ public class CourseController {
 		
 		//TODO  complete this method in homework 4
 		// Create loop catch for getting course grade
-		for (CourseDTOG.GradeDTO courseGrade : courseDTO.grades) {
-			Enrollment enrolled = enrollmentRepository.findByEmailAndCourseId(courseGrade.student_email, course_id);
+		for (CourseDTOG.GradeDTO g : courseDTO.grades) {
+			Enrollment e = enrollmentRepository.findByEmailAndCourseId(g.student_email, course_id);
 			
 			//set the grade and save to the enrollment table
-			enrolled.setCourseGrade(courseGrade.grade);
-			enrollmentRepository.save(enrolled);
+			e.setCourseGrade(g.grade);
+			enrollmentRepository.save(e);
 		}
 
 	}
