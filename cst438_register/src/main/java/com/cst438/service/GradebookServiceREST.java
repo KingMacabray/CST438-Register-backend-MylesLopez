@@ -32,6 +32,7 @@ public class GradebookServiceREST extends GradebookService {
 		EnrollmentDTO response = restTemplate.postForObject(gradebook_url+"/enrollment", enrollment, EnrollmentDTO.class);
 		System.out.println("Response from gradebook " + response);
 		*/
+		/*
 		EnrollmentDTO result = restTemplate
 				.postForObject(
 						gradebook_url + "/enrollment/",
@@ -39,8 +40,14 @@ public class GradebookServiceREST extends GradebookService {
 				EnrollmentDTO.class);
 		System.out.println("POST student enrollment to gradebook. " + result.id 
                 + " " + result.studentEmail + " " + result.course_id);
-
-
+		*/
+		EnrollmentDTO enrollment = new EnrollmentDTO();
+		enrollment.course_id = course_id;
+		enrollment.studentEmail = student_email;
+		enrollment.studentName = student_name;
+		EnrollmentDTO result = restTemplate
+				.postForObject(gradebook_url+"/enrollment", enrollment, EnrollmentDTO.class);
+		System.out.println("Response from gradebook " + result);
 		
 	}
 
