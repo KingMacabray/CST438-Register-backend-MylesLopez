@@ -52,9 +52,12 @@ public class GradebookServiceMQ extends GradebookService {
 		{
 			Enrollment enrolled = enrollmentRepository.findByEmailAndCourseId(grad.student_email, courseDTOG.course_id);
 			enrolled.setCourseGrade(grad.grade);
+			
+			// Save changes to database
 			enrolled = enrollmentRepository.save(enrolled);
 			
-			System.out.println("Student Email: " + grad.student_email + " for Course " + courseDTOG.course_id + " Grade Updated: " + grad.grade);
+			// Output changes to command line. Use information used and altered
+			System.out.println("Student Email " + grad.student_email + " for Course " + courseDTOG.course_id + " Grade Updated: " + grad.grade);
 			
 		}
 	}
