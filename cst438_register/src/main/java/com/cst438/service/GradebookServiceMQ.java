@@ -48,13 +48,13 @@ public class GradebookServiceMQ extends GradebookService {
 
 		//TODO 
 		// for each student grade in courseDTOG,  find the student enrollment entity, update the grade and save back to enrollmentRepository.
-		for (CourseDTOG.GradeDTO grade : courseDTOG.grades)
+		for (CourseDTOG.GradeDTO grad : courseDTOG.grades)
 		{
-			Enrollment enrolled = enrollmentRepository.findByEmailAndCourseId(grade.student_email, courseDTOG.course_id);
-			enrolled.setCourseGrade(grade.grade);
+			Enrollment enrolled = enrollmentRepository.findByEmailAndCourseId(grad.student_email, courseDTOG.course_id);
+			enrolled.setCourseGrade(grad.grade);
 			enrolled = enrollmentRepository.save(enrolled);
 			
-			System.out.println("Course Grade Update: " + grade.student_email + " " + courseDTOG.course_id + " : " + grade.grade);
+			System.out.println("Student Email: " + grad.student_email + " for Course " + courseDTOG.course_id + " Grade Updated: " + grad.grade);
 			
 		}
 	}

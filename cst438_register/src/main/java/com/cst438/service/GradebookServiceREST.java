@@ -45,8 +45,7 @@ public class GradebookServiceREST extends GradebookService {
 		enrollment.course_id = course_id;
 		enrollment.studentEmail = student_email;
 		enrollment.studentName = student_name;
-		EnrollmentDTO result = restTemplate
-				.postForObject(gradebook_url+"/enrollment", enrollment, EnrollmentDTO.class);
+		EnrollmentDTO result = restTemplate.postForObject(gradebook_url+"/enrollment", enrollment, EnrollmentDTO.class);
 		System.out.println("Response from gradebook " + result);
 		
 	}
