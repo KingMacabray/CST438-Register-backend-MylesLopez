@@ -30,7 +30,7 @@ public class StudentController {
 	StudentRepository studentRepository;
 	
 	
-	// Add new student by email and name
+	// Add new student by email and name 
 	@PostMapping("/student") 
 	@Transactional
 	public StudentDTO addStudent(@RequestBody StudentDTO studentDTO) { 
