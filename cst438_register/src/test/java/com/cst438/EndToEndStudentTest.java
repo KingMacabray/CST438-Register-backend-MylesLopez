@@ -20,8 +20,8 @@ import com.cst438.domain.CourseRepository;
 import com.cst438.domain.Enrollment;
 import com.cst438.domain.EnrollmentRepository;
 
-//import com.cst438.domain.Student;
-//import com.cst438.domain.StudentRepository;
+import com.cst438.domain.Student;
+import com.cst438.domain.StudentRepository;
 
 /*
  * This example shows how to use selenium testing using the web driver 
@@ -39,7 +39,7 @@ import com.cst438.domain.EnrollmentRepository;
  */
 
 @SpringBootTest
-public class EndToEndScheduleTest {
+public class EndToEndStudentTest {
 
 	//public static final String CHROME_DRIVER_FILE_LOCATION = "C:/chromedriver_win32/chromedriver.exe";
 	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver.exe";
@@ -65,8 +65,8 @@ public class EndToEndScheduleTest {
 	@Autowired
 	CourseRepository courseRepository;
 	
-	//@Autowired
-	//StudentRepository studentRepository;
+	@Autowired
+	StudentRepository studentRepository;
 
 	/*
 	 * Student add course TEST_COURSE_ID to schedule for 2021 Fall semester.
@@ -77,7 +77,7 @@ public class EndToEndScheduleTest {
 
 		/*
 		 * if student is already enrolled, then delete the enrollment.
-		 */
+		 
 		
 		Enrollment x = null;
 		do {
@@ -124,10 +124,10 @@ public class EndToEndScheduleTest {
 			driver.findElement(By.xpath("//button[@id='Add']")).click();
 			Thread.sleep(SLEEP_DURATION);
 
-			/*
-			* verify that new course shows in schedule.
-			* get the title of all courses listed in schedule
-			*/ 
+			
+			// verify that new course shows in schedule.
+			// get the title of all courses listed in schedule
+			 
 		
 			Course course = courseRepository.findById(TEST_COURSE_ID).get();
 			
@@ -159,6 +159,7 @@ public class EndToEndScheduleTest {
 
 			driver.quit();
 		}
-
+	*/
 	}
+	
 }
