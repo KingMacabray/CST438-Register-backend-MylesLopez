@@ -78,7 +78,7 @@ public class EndToEndStudentTest {
 	 */
 	
 	@Test
-	public void addStudentTest() throws Exception {
+	public void addStudentHomepageTest() throws Exception {
 
 		/*
 		// * if student is already enrolled, then delete the enrollment.
@@ -115,24 +115,37 @@ public class EndToEndStudentTest {
 			//WebElement we = driver.findElement(By.xpath("(//input[@type='radio'])[last()]"));
 			//we.click();
 
-			// Locate and click "Add Student" button
+			/*/ Locate and click "Add Student" button
 			
 			WebElement we = driver.findElement(By.xpath("//a[href='/student']"));//.click();
 			we.click();
 			Thread.sleep(SLEEP_DURATION);
 
-			///////
+			//////*/
+			WebElement we = driver.findElement(By.id("studentButton"));//.click();
+			we.click();
+			Thread.sleep(SLEEP_DURATION);
 			/*
 			// Locate and click "Add Course" button which is the first and only button on the page.
 			driver.findElement(By.xpath("//button")).click();
 			Thread.sleep(SLEEP_DURATION);
-			///*/
+			////
 			// enter course no and click Add button
 			
 			driver.findElement(By.xpath("//button")).click();
 			Thread.sleep(SLEEP_DURATION);
+			/////
 			
 			
+			
+			driver.findElement(By.id("toStudt")).click();
+			Thread.sleep(SLEEP_DURATION);
+			////*/
+			
+			driver.findElement(By.id("studName")).sendKeys(TEST_NAME);
+			driver.findElement(By.id("studEmail")).sendKeys(TEST_USER_EMAIL);
+			driver.findElement(By.id("AddStud")).click();
+			Thread.sleep(SLEEP_DURATION);
 			/*
 			driver.findElement(By.xpath("//input[@name='name']")).sendKeys(TEST_NAME);
 			driver.findElement(By.xpath("//input[@name='email']")).sendKeys(TEST_USER_EMAIL);
@@ -145,7 +158,7 @@ public class EndToEndStudentTest {
 			 
 			
 			//Course course = courseRepository.findById(TEST_COURSE_ID).get();
-			Student student = studentRepository.findByEmail(TEST_USER_EMAIL);
+			//Student student = studentRepository.findByEmail(TEST_USER_EMAIL);
 			
 			/*
 			List<WebElement> elements  = driver.findElements(By.xpath("//div[@data-field='title']/div[@class='MuiDataGrid-cellContent']"));
