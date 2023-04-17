@@ -44,7 +44,7 @@ public class EndToEndStudentTest {
 	//public static final String CHROME_DRIVER_FILE_LOCATION = "C:/chromedriver_win32/chromedriver.exe";
 	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver";
 
-	public static final String URL = "http://localhost:3000/student";
+	public static final String URL = "http://localhost:3000";
 
 	public static final String TEST_USER_EMAIL = "willingtest@csumb.edu";
 
@@ -109,6 +109,8 @@ public class EndToEndStudentTest {
 
 			driver.get(URL);
 			Thread.sleep(SLEEP_DURATION);
+			
+			driver.findElement(By.xpath("//a"));
 
 			// select the last of the radio buttons on the list of semesters page.
 			
@@ -198,6 +200,60 @@ public class EndToEndStudentTest {
 			driver.quit();
 		}
 	//*/
+	}
+	@Test
+	public void addStudentAdminTest() throws Exception {
+		Student x = null;
+		do {
+			x = studentRepository.findByEmail(TEST_USER_EMAIL);
+			if (x != null)
+				{studentRepository.delete(x);}
+		} while (x != null);
+		
+		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FILE_LOCATION);
+		WebDriver driver = new ChromeDriver();
+		// Puts an Implicit wait for 10 seconds before throwing exception
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//*/
+		try {
+			driver.get(URL);
+			Thread.sleep(SLEEP_DURATION);
+			
+			
+			WebElement we = driver.findElement(By.id("toStudt"));//.click();
+			we.click();
+			Thread.sleep(SLEEP_DURATION);
+			
+			
+			we = driver.findElement(By.id("studentButton"));//.click();
+			we.click();
+			Thread.sleep(SLEEP_DURATION);
+			
+			
+			driver.findElement(By.id("studName")).sendKeys(TEST_NAME);
+			driver.findElement(By.id("studEmail")).sendKeys(TEST_USER_EMAIL);
+			driver.findElement(By.id("AddStud")).click();
+			Thread.sleep(SLEEP_DURATION);
+			
+			Student s = studentRepository.findByEmail(TEST_USER_EMAIL);
+			assertNotNull(s, "Student addition not found in database.");
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+
+		// clean up database.
+		/*
+		Enrollment e = enrollmentRepository.findByEmailAndCourseId(TEST_USER_EMAIL, TEST_COURSE_ID);
+		if (e != null)
+			enrollmentRepository.delete(e);
+		////*/
+		Student s = studentRepository.findByEmail(TEST_USER_EMAIL);
+		if (s != null)
+			studentRepository.delete(s);
+		
+		driver.quit();
+	}
+		
 	}
 	
 }

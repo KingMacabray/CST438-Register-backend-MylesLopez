@@ -111,17 +111,20 @@ public class EndToEndScheduleTest {
 
 			// Locate and click "Get Schedule" button
 			
-			driver.findElement(By.xpath("//a")).click();
-			Thread.sleep(SLEEP_DURATION);
+			//driver.findElement(By.xpath("//a")).click();
+			//Thread.sleep(SLEEP_DURATION);
 
 			// Locate and click "Add Course" button which is the first and only button on the page.
-			driver.findElement(By.xpath("//button")).click();
+			driver.findElement(By.id("selectTerm")).click();
 			Thread.sleep(SLEEP_DURATION);
 
 			// enter course no and click Add button
 			
+			driver.findElement(By.xpath("//button[@id='courseAddition']")).click();
+			Thread.sleep(SLEEP_DURATION);
+			
 			driver.findElement(By.xpath("//input[@name='course_id']")).sendKeys(Integer.toString(TEST_COURSE_ID));
-			driver.findElement(By.xpath("//button[@id='Add']")).click();
+			driver.findElement(By.xpath("//button[@id='AddCourse']")).click();
 			Thread.sleep(SLEEP_DURATION);
 
 			/*
