@@ -42,7 +42,7 @@ import com.cst438.domain.StudentRepository;
 public class EndToEndStudentTest {
 
 	//public static final String CHROME_DRIVER_FILE_LOCATION = "C:/chromedriver_win32/chromedriver.exe";
-	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver.exe";
+	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver";
 
 	public static final String URL = "http://localhost:3000";
 
@@ -73,18 +73,19 @@ public class EndToEndStudentTest {
 	 */
 	
 	@Test
-	public void addCourseTest() throws Exception {
+	public void addStudentTest() throws Exception {
 
 		/*
-		 * if student is already enrolled, then delete the enrollment.
-		 
+		// * if student is already enrolled, then delete the enrollment.
+		//*/ 
 		
-		Enrollment x = null;
+		Student x = null;
 		do {
-			x = enrollmentRepository.findByEmailAndCourseId(TEST_USER_EMAIL, TEST_COURSE_ID);
+			x = studentRepository.findByEmail(TEST_USER_EMAIL);
 			if (x != null)
-				enrollmentRepository.delete(x);
+				{studentRepository.delete(x);}
 		} while (x != null);
+		///*
 
 		// set the driver location and start driver
 		//@formatter:off
@@ -98,7 +99,7 @@ public class EndToEndStudentTest {
 		WebDriver driver = new ChromeDriver();
 		// Puts an Implicit wait for 10 seconds before throwing exception
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+		//*/
 		try {
 
 			driver.get(URL);
@@ -106,14 +107,16 @@ public class EndToEndStudentTest {
 
 			// select the last of the radio buttons on the list of semesters page.
 			
-			WebElement we = driver.findElement(By.xpath("(//input[@type='radio'])[last()]"));
-			we.click();
+			//WebElement we = driver.findElement(By.xpath("(//input[@type='radio'])[last()]"));
+			//we.click();
 
-			// Locate and click "Get Schedule" button
+			// Locate and click "Add Student" button
 			
-			driver.findElement(By.xpath("//a")).click();
+			WebElement we = driver.findElement(By.xpath("//a[href='/student']"));//.click();
+			we.click();
 			Thread.sleep(SLEEP_DURATION);
 
+			////////
 			// Locate and click "Add Course" button which is the first and only button on the page.
 			driver.findElement(By.xpath("//button")).click();
 			Thread.sleep(SLEEP_DURATION);
@@ -159,7 +162,7 @@ public class EndToEndStudentTest {
 
 			driver.quit();
 		}
-	*/
+	//*/
 	}
 	
 }

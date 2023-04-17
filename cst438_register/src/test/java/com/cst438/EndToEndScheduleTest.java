@@ -42,7 +42,7 @@ import com.cst438.domain.EnrollmentRepository;
 public class EndToEndScheduleTest {
 
 	//public static final String CHROME_DRIVER_FILE_LOCATION = "C:/chromedriver_win32/chromedriver.exe";
-	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver.exe";
+	public static final String CHROME_DRIVER_FILE_LOCATION = "/Users/lynnalopez/Desktop/chromedriver";
 
 	public static final String URL = "http://localhost:3000";
 
