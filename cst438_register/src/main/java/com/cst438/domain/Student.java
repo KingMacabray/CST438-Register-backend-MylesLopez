@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import java.util.Optional;
+
 @Entity
 public class Student {
 	
@@ -55,10 +59,16 @@ public class Student {
 		return "Student [student_id=" + student_id + ", name=" + name + ", email=" + email + ", statusCode="
 				+ statusCode + ", status=" + status + "]";
 	}
-
-	public Student orElse(Object object) {
+	
+	/*/public Student orElse(Object object) {
 		// TODO Auto-generated method stub
-		return null;
+		if (object != null)
+		{
+			return Student();
+		}
+		else
+		{return null;}
 	}
+	////*/
 
 }
