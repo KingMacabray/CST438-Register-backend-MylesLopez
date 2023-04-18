@@ -1,4 +1,5 @@
 package com.cst438.domain;
+import java.util.Optional;
 
 public class StudentDTO {
 
@@ -56,7 +57,7 @@ public class StudentDTO {
 				return false;
 		} else if (!student_name.equals(other.student_name))
 			return false;
-		if (status != null)
+		if (status != other.status)
 			return false;
 		if (statusId != other.statusId)
 			return false;

@@ -6,23 +6,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-/*
+//*
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-*/
+//*/
 
 // Packages from other files
 import com.cst438.domain.Student;
 import com.cst438.domain.StudentDTO;
 import com.cst438.domain.StudentRepository;
 
+import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
+import com.cst438.service.GradebookService;
+
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "https://registerf-cst438.herokuapp.com/"})
 public class StudentController {
 
 	
@@ -30,7 +37,7 @@ public class StudentController {
 	StudentRepository studentRepository;
 	
 	
-	// Add new student by email and name
+	// Add new student by email and name 
 	@PostMapping("/student") 
 	@Transactional
 	public StudentDTO addStudent(@RequestBody StudentDTO studentDTO) { 
@@ -63,6 +70,7 @@ public class StudentController {
 	@Transactional
 	public void updateHold (@PathVariable("studId") Integer studentId, @RequestBody StudentDTO student) {
 		Student stud = studentRepository.findById(studentId).orElse(null);
+		//Student stud = studentRepository.findById(studentId);//.orElse(null);
 
 		// Check if there exists a student to change Hold
 		if (stud == null) {
